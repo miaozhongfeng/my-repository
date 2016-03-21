@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 public class zuoye4 
 {
-	  //º¯ÊıËµÃ÷£ºÕıÔò±í´ïÊ½·¨ÅĞ¶Ï×Ö·ûÊÇ·ñÎªÊı×Ö
+	  //å‡½æ•°è¯´æ˜ï¼šæ­£åˆ™è¡¨è¾¾å¼æ³•åˆ¤æ–­å­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—
 	  public static boolean isNumeric(CharSequence charSequence)
 	  { 
 		   Pattern pattern = Pattern.compile("[0-9]*"); 
@@ -39,52 +39,47 @@ public class zuoye4
 		
 	
 	           Map<String,Integer> map=new HashMap<String,Integer>();
-	          
-	           File file = new File("e:\\ÎÄµµ\\Gone_with_the_wind.txt");
+	           //è¯»å–æ–‡æ¡£
+	           File file = new File("e:\\æ–‡æ¡£\\Gone_with_the_wind.txt");
 	           FileReader reader = new FileReader(file);
 	           int fileLen = (int)file.length();
 	           char[] chars = new char[fileLen];
 	           reader.read(chars);
 	           String es= String.valueOf(chars);
 	           
-	  /*Scanner sc=new Scanner(System.in);
-		     //¶¨Òåes½ÓÊÕÓ¢ÎÄ¾ä×Ó×Ö·û´®
-		     String es=null;
-		     System.out.println("ÇëÊäÈëÓ¢Óï¶Ì¾ä£º");
-		      //Ğ¡ÌáÊ¾£ºnextÓöµ½¿Õ¸ñ·µ»Ø£¬nextLine¿É¶ÁÒ»ĞĞ
-        	 es=sc.nextLine();*/
-        	 //ÎªÁË²»Çø·Ö´óĞ¡Ğ´£¬°ÑËùÓĞ×ÖÄ¸×ª»»³ÉĞ¡Ğ´
-        	 es= es.toLowerCase();
-        	 //Õâ¸öÀà»á½«×Ö·û´®·Ö½â
-        	 StringTokenizer token=new StringTokenizer(es);
-        	//±éÀú
-        	 while(token.hasMoreTokens())
-        	 {   
-        		//°´ÕÕ,[¿Õ¸ñ] ? . !£¬Ë«ÒıºÅ£¬µ¥ÒıºÅ£¬»»ĞĞ·ûÈ¥·Ö¸î 
+        	   //ä¸ºäº†ä¸åŒºåˆ†å¤§å°å†™ï¼ŒæŠŠæ‰€æœ‰å­—æ¯è½¬æ¢æˆå°å†™
+        	   es= es.toLowerCase();
+        	   //è¿™ä¸ªç±»ä¼šå°†å­—ç¬¦ä¸²åˆ†è§£
+        	   StringTokenizer token=new StringTokenizer(es);
+        	   //éå†
+        	   while(token.hasMoreTokens())
+        	   {   
+        		//æŒ‰ç…§,[ç©ºæ ¼] ? . !ï¼ŒåŒå¼•å·ï¼Œå•å¼•å·ï¼Œæ¢è¡Œç¬¦å»åˆ†å‰² 
         		 String word=token.nextToken(", ?.!:\"\"\''\n"); 
-        		//È¡µ¥´ÊµÄµÚÒ»¸ö×Ö·û£¬µ÷ÓÃº¯ÊıisNumericÅĞ¶ÏwordµÄÊ××Ö·ûÊÇ·ñÎªÊı×Ö,²¢ÇÒÅĞ¶Ïµ¥´Ê³¤¶ÈÊÇ·ñ´óÓÚ3
+        		//å–å•è¯çš„ç¬¬ä¸€ä¸ªå­—ç¬¦ï¼Œè°ƒç”¨å‡½æ•°isNumericåˆ¤æ–­wordçš„é¦–å­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—,å¹¶ä¸”åˆ¤æ–­å•è¯é•¿åº¦æ˜¯å¦å¤§äº3
         		if( !isNumeric(word.subSequence(0,1))&&word.length()>=4)
         		{  
-        			//Í³¼Æµ¥´ÊµÄ¸öÊı
+        			//ç»Ÿè®¡å•è¯çš„ä¸ªæ•°
         		   if(map.containsKey(word))
         		   {     
         	            int count=map.get(word);  
-        	            //Èç¹ûHashMapÒÑÓĞÕâ¸öµ¥´Ê£¬ÔòÊ¹ËüµÄÊıÁ¿¼Ó1
+        	            //å¦‚æœHashMapå·²æœ‰è¿™ä¸ªå•è¯ï¼Œåˆ™ä½¿å®ƒçš„æ•°é‡åŠ 1
         	            map.put(word, count+1);
         		   }  
-        		 //Èç¹ûÃ»ÓĞµÚ¶ş¸öÏàÍ¬µ¥´Ê£¬ÊıÁ¿Îª1 
-        	       else                                    
+        		 //å¦‚æœæ²¡æœ‰ç¬¬äºŒä¸ªç›¸åŒå•è¯ï¼Œæ•°é‡ä¸º1 
+        	         else                                    
         	            map.put(word, 1);      
         		}
         		
-        	 }
+        	    }
 	
-	        
+	                    
         		   List<Map.Entry<String, Integer>> infoids = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
         		  
-        	
+        	           //æ’åº
         		   Collections.sort(infoids, new Comparator<Map.Entry<String, Integer>>() 
-        		    		{     //ÅÅĞò
+        		    	{     
+        		    	         //å¦‚æœå•è¯é¢‘ç‡ä¸åŒï¼Œé™åºæ’åºï¼Œé¢‘ç‡ç›¸åŒï¼ŒæŒ‰è¯å…¸é¡ºåºæ’åº
         		                 public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) 
         		                 {     
         		                      if(o1.getValue()<o2.getValue())
@@ -99,26 +94,23 @@ public class zuoye4
         		                  
         		    
         		
-        		   //System.out.println(new TreeMap<String, Integer>());
+        		   //æ–‡ä»¶å†™å…¥
         		   FileWriter writer = new FileWriter("E:\\Result.txt.txt");
         		    for (int i = 0; i <infoids.size(); i++) 
-        		    {   
-                         Entry<String, Integer> id =infoids.get(i); 
-                       
-                       
-                    	  
+        		    {  
+        		      //ä¸€æ¬¡å†™å…¥ä¸€ä¸ªå•è¯ä»¥åŠå¯¹åº”çš„é¢‘ç‡
+                              Entry<String, Integer> id =infoids.get(i); 
                              writer.write(id.getKey()+' '+id.getValue()+"\r\n");
                             
-                         } 
-                         
+                            } 
+                            //å…¨éƒ¨å†™å…¥
         		    writer.flush();
-                    writer.close(); 
+                            writer.close(); 
                          
-        		      //System.out.println(id.getKey()+":"+id.getValue()); 
-                        
-        		    }
+        		      
+        }
         		    
-        		        } 
+   } 
 
         
  
